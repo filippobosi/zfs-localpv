@@ -86,6 +86,8 @@ func CreateZFSVolume(req *csi.CreateVolumeRequest) (string, error) {
 	tp := req.GetParameters()["thinprovision"]
 	schld := req.GetParameters()["scheduler"]
 	fstype := req.GetParameters()["fstype"]
+	parentDataset := req.GetParameters()["matchLabels"]["parent-dataset"]
+	logrus.Infof("parent dataset %s", parentDataset)
 
 	vtype := zfs.GetVolumeType(fstype)
 
